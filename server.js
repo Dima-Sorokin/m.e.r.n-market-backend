@@ -3,6 +3,7 @@ const express = require(`express`);
 const app = express();
 const productRoutes = require(`./routes/products`);
 const mongoose = require(`mongoose`);
+const port = process.env.PORT || 3000;
 
 //midleware
 app.use(express.json());
@@ -18,8 +19,8 @@ app.use('/api/products', productRoutes);
 mongoose.connect(process.env.MONGO_URI)
     .then(() => {
         //listen for reqest
-        app.listen(process.env.PORT, () => {
-            console.log(`listening to port: ${process.env.PORT}...`);
+        app.listen(port, () => {
+            console.log(`App listening at http://localhost:${port}`);
         })
     })
     .catch((err) => {
